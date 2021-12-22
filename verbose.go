@@ -46,7 +46,7 @@ func NewWithWriter(w io.Writer) Verbose {
 func (v *Verbose) indentation() string {
 	s := ""
 	for len(s) < v.indent {
-		s += ""
+		s += " "
 	}
 	return s
 }
@@ -77,8 +77,8 @@ func (v *Verbose) VDump(i interface{}) {
 	fmt.Fprintf(v.getWriter(), s)
 }
 
-func (v *Verbose) VIndent() *Verbose {
-	return &Verbose{
+func (v *Verbose) VIndent() Verbose {
+	return Verbose{
 		log:    v.log,
 		indent: v.indent + 2,
 		writer: v.writer,
